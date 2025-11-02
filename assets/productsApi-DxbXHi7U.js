@@ -1,0 +1,1 @@
+const s="https://dummyjson.com/products";async function n(){const t=await fetch(s);if(!t.ok)throw new Error(`Failed to fetch products: ${t.status}`);return(await t.json()).products||[]}async function r(t){const o=await fetch(`${s}/${t}`);if(!o.ok)throw new Error(`Failed to fetch product ${t}: ${o.status}`);return await o.json()}export{r as a,n as f};
