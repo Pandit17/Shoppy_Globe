@@ -1,23 +1,25 @@
 import React from "react";
-import { useLocation, Link } from "react-router-dom"; // useLocation to get current URL, Link for navigation
+import { useLocation, Link } from "react-router-dom";
 
 /**
- * NotFound component: displays a 404 page when a route does not exist
+ * NotFound component: displays a professional 404 page
+ * - Shows the current path that was not found
+ * - Provides a link to return home
  */
 export default function NotFound() {
-  const loc = useLocation(); // Get information about the current location/path
+  const loc = useLocation(); // Get current URL/path
 
   return (
     <div className="notfound">
       {/* Main heading */}
       <h2>404 — Page Not Found</h2>
 
-      {/* Show the path that was not found */}
+      {/* Show the invalid path */}
       <p>
         The requested path <code>{loc.pathname}</code> could not be found on this site.
       </p>
 
-      {/* Link to return to the home page */}
+      {/* Return home link */}
       <Link to="/">Return Home</Link>
     </div>
   );

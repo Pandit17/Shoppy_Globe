@@ -72,6 +72,8 @@ Shoppy_Globe/
 └─ src/
    ├─ api/
    │  └─ productsApi.js
+   ├─ assets/
+   │  └─ favicon.ico
    ├─ components/
    │  ├─ Cart.jsx
    │  ├─ CartItem.jsx

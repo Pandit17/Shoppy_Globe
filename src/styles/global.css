@@ -1,110 +1,112 @@
 /* =======================
    Root Variables
    ======================= */
+/* Define theme colors, glows, and other reusable variables */
 :root {
-  --bg: #0b0f14; /* Main background */
-  --card: #0f1720; /* Card backgrounds */
-  --muted: #9aa4b2; /* Muted text color */
+  --bg: #0b0f14; /* Main app background color */
+  --card: #0f1720; /* Card and panel background */
+  --muted: #9aa4b2; /* Muted text for less important info */
 
-  --accent-primary: #7c5cff; /* Add to Cart buttons */
-  --accent-secondary: #00f0ff; /* Search box focus / nav hover */
-  --accent-price: #ff82ff; /* Product price color */
-  --accent-glow: rgba(124, 92, 255, 0.4); /* Neon glow effect */
-  --accent-glow2: rgba(255, 130, 255, 0.3); /* Secondary glow */
-  --accent-error: #ff5f87; /* Error messages */
-  --glass: rgba(255,255,255,0.04); /* Glass effect for panels */
-  --brand-color: #ffb0f0; /* ShoppyGlobe exclusive color */
-  --details-color: #00ffff; /* Details button */
-  --products-heading-color: #00f0ff; /* Products heading */
-  --product-name-color: #ffcd4d; /* Product names color */
+  --accent-primary: #7c5cff; /* Primary buttons and highlights */
+  --accent-secondary: #00f0ff; /* Hover/focus accents for nav/search */
+  --accent-price: #ff82ff; /* Product price text color */
+  --accent-glow: rgba(124, 92, 255, 0.4); /* Neon glow for cards/buttons */
+  --accent-glow2: rgba(255, 130, 255, 0.3); /* Secondary glow for depth */
+  --accent-error: #ff5f87; /* Error messages and 404 highlights */
+  --glass: rgba(255,255,255,0.04); /* Glassy overlay for cards/panels */
+  --brand-color: #ffb0f0; /* Brand color for logo/text */
+  --details-color: #00ffff; /* "Details" button color */
+  --products-heading-color: #00f0ff; /* Heading for product sections */
+  --product-name-color: #ffcd4d; /* Product name color */
 }
 
 /* =======================
    Global Reset
    ======================= */
+/* Reset box sizing and body styling for consistency */
 * { box-sizing: border-box; }
 
 body {
-  margin: 0;
-  font-family: Inter, system-ui, Segoe UI, Arial;
-  background: linear-gradient(180deg,#05070a 0%, #071128 100%);
-  color: #e6eef7;
-  min-height: 100vh;
+  margin: 0; /* Remove default body margin */
+  font-family: Inter, system-ui, Segoe UI, Arial; /* Modern readable font stack */
+  background: linear-gradient(180deg,#05070a 0%, #071128 100%); /* Dark gradient background */
+  color: #e6eef7; /* Light text color */
+  min-height: 100vh; /* Ensure body fills viewport height */
 }
 
-/* Container for central alignment */
+/* Central container for content alignment */
 .container { 
-  max-width: 1100px; 
-  margin: 24px auto; 
-  padding: 0 16px; 
+  max-width: 1100px; /* Limit max width */
+  margin: 24px auto; /* Center horizontally with vertical spacing */
+  padding: 0 16px; /* Small side padding */
 }
 
 /* =======================
    Header
    ======================= */
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; /* Flex for layout of logo + nav */
+  align-items: center; /* Vertical alignment */
+  justify-content: space-between; /* Spread logo and nav */
   padding: 12px 24px;
-  background: var(--glass);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-  box-shadow: 0 0 8px var(--accent-glow2);
+  background: var(--glass); /* Glassy semi-transparent background */
+  backdrop-filter: blur(6px); /* Blur effect for glass look */
+  border-bottom: 1px solid rgba(255,255,255,0.03); /* Subtle bottom border */
+  box-shadow: 0 0 8px var(--accent-glow2); /* Soft shadow glow */
 }
 
-/* Brand Link */
+/* Brand link styling */
 .brand-link {
-  color: var(--brand-color);
-  font-weight: 700;
-  font-size: 1.4rem;
-  text-decoration: none;
-  text-shadow: 0 0 8px var(--brand-color);
-  transition: all 0.3s ease;
+  color: var(--brand-color); /* Brand color */
+  font-weight: 700; /* Bold */
+  font-size: 1.4rem; /* Slightly larger font */
+  text-decoration: none; /* Remove underline */
+  text-shadow: 0 0 8px var(--brand-color); /* Glow effect */
+  transition: all 0.3s ease; /* Smooth hover transition */
 }
 .brand-link:hover {
-  text-shadow: 0 0 16px var(--brand-color), 0 0 12px var(--accent-secondary);
+  text-shadow: 0 0 16px var(--brand-color), 0 0 12px var(--accent-secondary); /* Stronger hover glow */
 }
 
-/* Search + Nav container */
+/* Container for search and nav links */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 24px; /* spacing between search box and nav */
-  margin-left: auto;
+  gap: 24px; /* Space between search and nav */
+  margin-left: auto; /* Push to right */
 }
 
-/* Navigation links (relocated to right) */
+/* Nav links styling */
 .nav {
   display: flex;
-  gap: 32px; /* spacing between Home, Cart, Checkout */
+  gap: 32px; /* Spacing between nav items */
   font-size: 1rem;
   font-weight: 500;
 }
 .nav a {
-  color: var(--muted);
-  text-decoration: none;
+  color: var(--muted); /* Muted color for non-hover state */
+  text-decoration: none; /* Remove underline */
   transition: all 0.3s ease;
 }
 .nav a:hover {
-  color: var(--accent-secondary);
-  text-shadow: 0 0 6px var(--accent-secondary);
+  color: var(--accent-secondary); /* Highlight on hover */
+  text-shadow: 0 0 6px var(--accent-secondary); /* Glow on hover */
 }
 
-/* Search Input */
+/* Search input styling */
 .search input {
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.03);
-  background: transparent;
-  color: inherit;
-  box-shadow: 0 0 4px var(--accent-glow2);
-  transition: all 0.3s ease;
+  padding: 8px; /* Internal spacing */
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid rgba(255,255,255,0.03); /* Light border */
+  background: transparent; /* Transparent for glass effect */
+  color: inherit; /* Same color as body text */
+  box-shadow: 0 0 4px var(--accent-glow2); /* Soft neon shadow */
+  transition: all 0.3s ease; /* Smooth focus transition */
 }
 .search input:focus {
-  outline: none;
-  border-color: var(--accent-secondary);
-  box-shadow: 0 0 12px var(--accent-secondary);
+  outline: none; /* Remove default focus outline */
+  border-color: var(--accent-secondary); /* Highlight border */
+  box-shadow: 0 0 12px var(--accent-secondary); /* Glow on focus */
 }
 
 /* =======================
@@ -121,9 +123,9 @@ body {
    Product Grid
    ======================= */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
-  gap: 24px; /* extra spacing between cards */
+  display: grid; /* Use CSS grid */
+  grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); /* Responsive columns */
+  gap: 24px; /* Space between grid items */
   margin-top: 16px;
 }
 
@@ -131,54 +133,59 @@ body {
    Card Styles
    ======================= */
 .card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); /* Slight gradient */
   padding: 12px;
   border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(2,6,23,0.6), 0 0 8px var(--accent-glow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6), 0 0 8px var(--accent-glow); /* Card depth + glow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover smooth animation */
+  position: relative; /* For absolute elements inside */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 360px; /* uniform height */
+  min-height: 360px; /* Uniform height */
 }
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(2,6,23,0.8), 0 0 14px var(--accent-glow), 0 0 12px var(--accent-glow2);
+  transform: translateY(-4px); /* Lift effect */
+  box-shadow: 0 8px 20px rgba(2,6,23,0.8), 0 0 14px var(--accent-glow), 0 0 12px var(--accent-glow2); /* Stronger glow on hover */
 }
-.card img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+.card img {
+  width: 100%; /* Full card width */
+  height: 160px; /* Fixed height */
+  object-fit: cover; /* Maintain aspect ratio */
+  border-radius: 8px;
+  flex-shrink: 0; /* Prevent shrinking */
+}
 
-/* Card body */
+/* Card body styling */
 .card-body {
   padding: 8px;
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1;
+  flex-grow: 1; /* Fill remaining space */
 }
 
-/* Product name (less shiny) */
+/* Product name inside card */
 .card-body h3 {
-  color: var(--product-name-color);
-  text-shadow: 0 0 3px var(--product-name-color), 0 0 5px rgba(255,205,77,0.1);
+  color: var(--product-name-color); /* Product name color */
+  text-shadow: 0 0 3px var(--product-name-color), 0 0 5px rgba(255,205,77,0.1); /* Subtle glow */
   margin: 4px 0;
   font-size: 1.1rem;
   line-height: 1.2rem;
-  overflow: hidden;
+  overflow: hidden; /* Truncate overflow */
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* Price */
+/* Price styling */
 .price {
   color: var(--accent-price);
   font-weight: 700;
-  text-shadow: 0 0 6px var(--accent-price);
+  text-shadow: 0 0 6px var(--accent-price); /* Neon-like effect */
   margin: 4px 0;
 }
 
-/* Add to Cart Button */
+/* Add to Cart button */
 .actions button {
   background: var(--accent-primary);
   border: none;
@@ -186,15 +193,15 @@ body {
   border-radius: 8px;
   color: white;
   cursor: pointer;
-  box-shadow: 0 0 6px var(--accent-primary);
-  transition: all 0.3s ease;
+  box-shadow: 0 0 6px var(--accent-primary); /* Glow effect */
+  transition: all 0.3s ease; /* Smooth hover */
 }
 .actions button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 12px var(--accent-primary), 0 0 6px var(--accent-secondary);
+  transform: scale(1.05); /* Slight enlarge */
+  box-shadow: 0 0 12px var(--accent-primary), 0 0 6px var(--accent-secondary); /* Enhanced glow */
 }
 
-/* Details button at bottom-right */
+/* Details button (bottom-right) */
 .detail-link {
   position: absolute;
   bottom: 8px;
@@ -214,107 +221,54 @@ body {
 }
 
 /* =======================
-   ProductList Heading
+   404 Error Page
    ======================= */
-.products-header h2 {
-  color: var(--products-heading-color);
-  text-shadow: 0 0 6px var(--products-heading-color), 0 0 12px rgba(0,240,255,0.2);
-}
-.products-header small { color: var(--muted); font-weight: 500; }
-
-/* =======================
-   Product Detail Page
-   ======================= */
-.detail {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-.detail img {
-  width: 100%;
-  height: 360px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 0 12px var(--accent-glow);
-}
-.detail-info h2 { margin: 0 0 8px 0; }
-.detail-info .price { font-size: 1.2rem; }
-
-/* =======================
-   Cart Page
-   ======================= */
-.cart-page { display: flex; gap: 20px; }
-.cart-list { flex: 2; }
-.cart-summary {
-  flex: 1;
-  background: var(--card);
-  padding: 12px;
-  border-radius: 10px;
-  box-shadow: 0 0 8px var(--accent-glow);
-}
-.cart-item {
+.error-page {
   display: flex;
+  flex-direction: column; /* Stack vertically */
   align-items: center;
-  gap: 12px;
-  padding: 10px;
-  background: var(--glass);
-  border-radius: 8px;
-  margin-bottom: 8px;
-  transition: all 0.3s ease;
+  justify-content: center;
+  height: calc(100vh - 80px); /* Full viewport minus header/footer */
+  text-align: center;
+  padding: 20px;
+  color: var(--accent-error); /* Error red accent */
 }
-.cart-item:hover { box-shadow: 0 0 10px var(--accent-glow2); }
-.cart-item img { width: 80px; height: 60px; object-fit: cover; border-radius: 6px; }
-.controls {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.error-page h1 {
+  font-size: 6rem; /* Large 404 number */
+  margin: 0;
+  text-shadow: 0 0 16px var(--accent-error), 0 0 24px var(--accent-glow2); /* Neon glow effect */
 }
-.controls button {
-  padding: 6px 8px;
-  border-radius: 6px;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.06);
+.error-page h2 {
+  font-size: 2rem;
+  margin: 8px 0 16px 0;
+  color: #fff;
+  text-shadow: 0 0 8px var(--accent-error);
+}
+.error-page p {
+  font-size: 1.1rem;
+  margin-bottom: 24px;
   color: var(--muted);
-  cursor: pointer;
-  transition: all 0.3s ease;
 }
-.controls button:hover {
-  color: white;
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 8px var(--accent-primary);
-}
-
-/* =======================
-   Checkout Page
-   ======================= */
-.checkout-grid { display: grid; grid-template-columns: 1fr 320px; gap: 20px; }
-.checkout-form label { display: block; margin-bottom: 10px; }
-.btn-primary {
-  display: inline-block;
+.error-page .btn-primary {
   background: var(--accent-primary);
-  padding: 10px 14px;
+  padding: 12px 20px;
   border-radius: 8px;
-  color: white;
+  font-weight: 600;
+  color: #fff;
   text-decoration: none;
-  cursor: pointer;
+  box-shadow: 0 0 10px var(--accent-primary);
   transition: all 0.3s ease;
 }
-.btn-primary:hover { transform: scale(1.03); box-shadow: 0 0 12px var(--accent-primary); }
-
-/* =======================
-   Footer
-   ======================= */
-.footer { padding: 16px; text-align: center; color: var(--muted); margin-top: 24px; }
-
-/* Error messages */
-.error { color: var(--accent-error); }
+.error-page .btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 16px var(--accent-primary), 0 0 8px var(--accent-glow);
+}
 
 /* =======================
    Media Queries
    ======================= */
 @media(max-width:760px) {
-  .detail { grid-template-columns: 1fr; gap: 12px; }
-  .checkout-grid { grid-template-columns: 1fr; }
-  .grid { grid-template-columns: 1fr; }
+  .detail { grid-template-columns: 1fr; gap: 12px; } /* Stack detail page */
+  .checkout-grid { grid-template-columns: 1fr; } /* Stack checkout */
+  .grid { grid-template-columns: 1fr; } /* Stack products grid */
 }
