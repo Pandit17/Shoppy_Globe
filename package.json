@@ -1,9 +1,9 @@
 {
-  "name": "react-project",
+  "name": "shoppy-globe",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://Pandit17.github.io/Shoppy_Globe",
+  "homepage": "https://Pandit17.github.io/Shoppy_Globe/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
