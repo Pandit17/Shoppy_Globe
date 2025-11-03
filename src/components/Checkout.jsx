@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux"; // For accessing and updating Redux store
-import { clearCart } from "../store/cartSlice"; // Redux action to clear cart after order
-import { useNavigate } from "react-router-dom"; // For programmatic navigation
-import formatCurrency from "../utils/formatCurrency"; // Utility to format prices
+import { useSelector, useDispatch } from "react-redux"; // To access and update Redux store
+import { clearCart } from "../store/cartSlice"; // Redux action to clear cart
+import { useNavigate, Link } from "react-router-dom"; // Navigation and linking
+import formatCurrency from "../utils/formatCurrency"; // Utility to format price
 
 /**
  * Checkout component: handles order placement and collects user details
@@ -10,27 +10,28 @@ import formatCurrency from "../utils/formatCurrency"; // Utility to format price
 export default function Checkout() {
   // Get cart items from Redux store; default to empty object
   const itemsMap = useSelector((s) => s.cart.items || {});
-  const items = Object.values(itemsMap); // Convert items object to array
+  const items = Object.values(itemsMap); // Convert object to array
 
-  // Calculate total price of cart
+  // Calculate total price of all items
   const totalAmount = items.reduce(
     (sum, it) => sum + (it.product.price || 0) * it.quantity,
     0
   );
 
   const dispatch = useDispatch(); // Hook to dispatch Redux actions
-  const navigate = useNavigate(); // Hook to navigate programmatically
+  const navigate = useNavigate(); // Hook to programmatically navigate
 
-  // Form state to store user inputs
+  // Form state for user input
   const [form, setForm] = useState({ name: "", email: "", address: "" });
 
-  // State to show if order is being placed
+  // State to show loading when order is being placed
   const [placing, setPlacing] = useState(false);
 
   /**
    * Updates form state on input change
    */
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   /**
    * Handles order placement
@@ -44,32 +45,41 @@ export default function Checkout() {
       return;
     }
 
-    setPlacing(true); // Show loading state on button
+    setPlacing(true); // Show loading state
 
-    // Simulate order processing delay
+    // Simulate order processing
     setTimeout(() => {
       alert("Order placed"); // Notify user
-      dispatch(clearCart()); // Clear cart in Redux
+      dispatch(clearCart()); // Clear cart in Redux store
       navigate("/", { replace: true }); // Redirect to home page
     }, 400);
   };
 
-  // Show message if cart is empty
+  // ================================
+  // Empty cart state
+  // ================================
   if (!items.length) {
     return (
-      <div className="center">
-        <h3>Your cart is empty</h3>
-        <p>Add items before checking out.</p>
+      <div className="centered-empty">
+        <h2>Your checkout is empty</h2>
+        <p>Add items to your cart before proceeding.</p>
+        {/* Link to go back to shopping */}
+        <Link to="/" className="btn-primary">
+          Go Shopping
+        </Link>
       </div>
     );
   }
 
+  // ================================
+  // Checkout form and summary
+  // ================================
   return (
     <div className="checkout">
       <h2>Checkout</h2>
 
       <div className="checkout-grid">
-        {/* Checkout form */}
+        {/* Checkout Form */}
         <form className="checkout-form" onSubmit={handlePlaceOrder}>
           <label>
             Name
@@ -86,13 +96,14 @@ export default function Checkout() {
             <textarea name="address" value={form.address} onChange={handleChange} />
           </label>
 
+          {/* Place order button */}
           <button type="submit" className="btn-primary" disabled={placing}>
-            {placing ? "Placing..." : "Place Order"} {/* Show loading state */}
+            {placing ? "Placing..." : "Place Order"}
           </button>
         </form>
 
-        {/* Order summary */}
-        <aside className="order-summary">
+        {/* Order Summary Sidebar */}
+        <aside className="checkout-summary">
           <h3>Order Summary</h3>
           <ul>
             {items.map((it) => (
@@ -101,7 +112,11 @@ export default function Checkout() {
               </li>
             ))}
           </ul>
-          <p><strong>Total: {formatCurrency(totalAmount)}</strong></p>
+
+          {/* Total amount */}
+          <p>
+            <strong>Total: {formatCurrency(totalAmount)}</strong>
+          </p>
         </aside>
       </div>
     </div>

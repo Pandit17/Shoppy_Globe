@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom"; // For navigation between pages
-import { useSelector, useDispatch } from "react-redux"; // For accessing and updating Redux state
+import { Link, useNavigate } from "react-router-dom"; // For client-side navigation
+import { useSelector, useDispatch } from "react-redux"; // Access and update Redux store
 import { setSearchQuery } from "../store/cartSlice"; // Redux action to update search query
 
 /**
@@ -24,7 +24,7 @@ export default function Header() {
 
   return (
     <header className="header">
-      {/* Brand / logo section */}
+      {/* Brand / logo section: clicking navigates to home */}
       <div className="brand" onClick={() => navigate("/")}>
         <Link to="/" aria-label="ShoppyGlobe home" className="brand-link">
           Shoppy<span className="glow">Globe</span>
@@ -45,7 +45,8 @@ export default function Header() {
         {/* Navigation links */}
         <nav className="nav">
           <Link to="/">Home</Link>
-          <Link to="/cart">Cart ({totalCount})</Link> {/* Shows total items in cart */}
+          {/* Shows total number of items in cart */}
+          <Link to="/cart">Cart ({totalCount})</Link>
           <Link to="/checkout">Checkout</Link>
         </nav>
       </div>

@@ -11,16 +11,16 @@ export const PRODUCTS_URL = "https://dummyjson.com/products";
  * @throws {Error} - Throws an error if the network request fails.
  */
 export async function fetchProducts() {
-  // Make a GET request to PRODUCTS_URL
+  // Make a GET request to the products API endpoint
   const res = await fetch(PRODUCTS_URL);
 
-  // Check if response is OK (status 200-299)
+  // Check if response is OK (status code 200–299)
   if (!res.ok) throw new Error(`Failed to fetch products: ${res.status}`);
 
-  // Parse response body as JSON
+  // Parse the response body as JSON
   const json = await res.json();
 
-  // Return the "products" array, defaulting to empty array if missing
+  // Return the "products" array from response, defaulting to empty array if missing
   return json.products || [];
 }
 
@@ -32,13 +32,13 @@ export async function fetchProducts() {
  * @throws {Error} - Throws an error if the network request fails.
  */
 export async function fetchProductById(id) {
-  // Make a GET request to fetch a specific product
+  // Make a GET request to fetch a specific product by ID
   const res = await fetch(`${PRODUCTS_URL}/${id}`);
 
   // Check if response is OK
   if (!res.ok) throw new Error(`Failed to fetch product ${id}: ${res.status}`);
 
-  // Parse response body as JSON and return
+  // Parse the response body as JSON and return the product object
   const json = await res.json();
   return json;
 }

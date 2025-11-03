@@ -2,25 +2,27 @@ import React from "react";
 import { useLocation, Link } from "react-router-dom";
 
 /**
- * NotFound component: displays a professional 404 page
- * - Shows the current path that was not found
+ * NotFound component: displays a stylish 404 page
+ * - Shows the invalid path
  * - Provides a link to return home
  */
 export default function NotFound() {
-  const loc = useLocation(); // Get current URL/path
+  const loc = useLocation(); // Hook to get the current URL/path
 
   return (
-    <div className="notfound">
-      {/* Main heading */}
-      <h2>404 — Page Not Found</h2>
+    <div className="error-page">
+      {/* Main heading with glow animation to highlight 404 */}
+      <h1>404</h1>
 
-      {/* Show the invalid path */}
+      {/* Description showing the invalid path */}
       <p>
         The requested path <code>{loc.pathname}</code> could not be found on this site.
       </p>
 
-      {/* Return home link */}
-      <Link to="/">Return Home</Link>
+      {/* Button to navigate back home, styled consistently with primary buttons */}
+      <Link to="/" className="btn-primary">
+        Return Home
+      </Link>
     </div>
   );
 }

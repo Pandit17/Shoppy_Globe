@@ -17,16 +17,23 @@ export default function CartItem({ item }) {
 
   return (
     <div className="cart-item">
-      {/* Product image */}
+      {/* ===============================
+           Product Image
+           =============================== */}
       <img src={product.thumbnail} alt={product.title} loading="lazy" />
 
-      {/* Product metadata */}
+      {/* ===============================
+           Product Metadata (Title & Price)
+           =============================== */}
       <div className="meta">
         <h4>{product.title}</h4>
-        <p>{formatCurrency(product.price)}</p> {/* Display price formatted as currency */}
+        {/* Display price formatted as currency */}
+        <p>{formatCurrency(product.price)}</p>
       </div>
 
-      {/* Quantity controls and remove button */}
+      {/* ===============================
+           Quantity Controls and Remove Button
+           =============================== */}
       <div className="controls">
         {/* Decrease quantity */}
         <button 

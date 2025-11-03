@@ -29,23 +29,23 @@ export default function useFetchProducts() {
     let mounted = true; // To avoid setting state if component unmounts
 
     (async () => {
-      setLoading(true); // Start loading
+      setLoading(true); // Start loading indicator
       try {
         const data = await fetchProducts(); // Fetch products from API
-        if (mounted) setProducts(data); // Update products state
+        if (mounted) setProducts(data); // Update products state if still mounted
       } catch (err) {
-        if (mounted) setError(err.message || "Unknown error"); // Update error state
+        if (mounted) setError(err.message || "Unknown error"); // Capture error
       } finally {
-        if (mounted) setLoading(false); // End loading
+        if (mounted) setLoading(false); // Stop loading indicator
       }
     })();
 
-    // Cleanup function to avoid memory leaks
+    // Cleanup function to avoid memory leaks if component unmounts
     return () => {
       mounted = false;
     };
   }, []);
 
-  // Return state for use in components
+  // Return the products, loading, and error states to be used in components
   return { products, loading, error };
 }

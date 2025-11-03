@@ -1,191 +1,190 @@
 /* =======================
    Root Variables
    ======================= */
-/* Define theme colors, glows, and other reusable variables */
+/* Define all reusable colors, shadows, and other constants for the theme */
 :root {
-  --bg: #0b0f14; /* Main app background color */
-  --card: #0f1720; /* Card and panel background */
-  --muted: #9aa4b2; /* Muted text for less important info */
-
-  --accent-primary: #7c5cff; /* Primary buttons and highlights */
-  --accent-secondary: #00f0ff; /* Hover/focus accents for nav/search */
-  --accent-price: #ff82ff; /* Product price text color */
-  --accent-glow: rgba(124, 92, 255, 0.4); /* Neon glow for cards/buttons */
-  --accent-glow2: rgba(255, 130, 255, 0.3); /* Secondary glow for depth */
-  --accent-error: #ff5f87; /* Error messages and 404 highlights */
-  --glass: rgba(255,255,255,0.04); /* Glassy overlay for cards/panels */
-  --brand-color: #ffb0f0; /* Brand color for logo/text */
-  --details-color: #00ffff; /* "Details" button color */
-  --products-heading-color: #00f0ff; /* Heading for product sections */
-  --product-name-color: #ffcd4d; /* Product name color */
+  --bg: #0b0f14; /* Main background color */
+  --card: #0f1720; /* Card / container background */
+  --muted: #9aa4b2; /* Muted text / secondary text */
+  --accent-primary: #7c5cff; /* Primary accent for buttons / highlights */
+  --accent-secondary: #00f0ff; /* Secondary accent / hover states */
+  --accent-price: #ff82ff; /* Price color */
+  --accent-glow: rgba(124, 92, 255, 0.4); /* Glow effect for primary */
+  --accent-glow2: rgba(255, 130, 255, 0.3); /* Secondary glow */
+  --accent-error: #ff5f87; /* Error / 404 color */
+  --glass: rgba(255, 255, 255, 0.04); /* Glassmorphic overlay */
+  --brand-color: #ffb0f0; /* Brand text color */
+  --details-color: #00ffff; /* Details / links */
+  --products-heading-color: #00f0ff; /* Products heading */
+  --product-name-color: #ffcd4d; /* Product name text */
+  --sidebar-bg: rgba(12, 18, 30, 0.95); /* Sidebar / summary background */
 }
 
 /* =======================
-   Global Reset
+   Global / Scrollbar
    ======================= */
-/* Reset box sizing and body styling for consistency */
-* { box-sizing: border-box; }
-
+* {
+  box-sizing: border-box; /* Include padding in element size */
+}
 body {
-  margin: 0; /* Remove default body margin */
-  font-family: Inter, system-ui, Segoe UI, Arial; /* Modern readable font stack */
-  background: linear-gradient(180deg,#05070a 0%, #071128 100%); /* Dark gradient background */
-  color: #e6eef7; /* Light text color */
-  min-height: 100vh; /* Ensure body fills viewport height */
+  margin: 0;
+  font-family: Inter, system-ui, Segoe UI, Arial; /* Font stack */
+  background: linear-gradient(180deg, #05070a 0%, #071128 100%); /* Gradient BG */
+  color: #e6eef7;
+  min-height: 100vh;
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
 }
 
-/* Central container for content alignment */
-.container { 
-  max-width: 1100px; /* Limit max width */
-  margin: 24px auto; /* Center horizontally with vertical spacing */
-  padding: 0 16px; /* Small side padding */
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #05070a;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--products-heading-color);
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--products-heading-color);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-secondary);
 }
 
 /* =======================
-   Header
+   Container
+   ======================= */
+.container {
+  max-width: 1100px; /* Max width for content */
+  margin: 24px auto; /* Center horizontally */
+  padding: 0 16px; /* Side padding */
+}
+
+/* =======================
+   Header / Nav
    ======================= */
 .header {
-  display: flex; /* Flex for layout of logo + nav */
-  align-items: center; /* Vertical alignment */
-  justify-content: space-between; /* Spread logo and nav */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 12px 24px;
-  background: var(--glass); /* Glassy semi-transparent background */
-  backdrop-filter: blur(6px); /* Blur effect for glass look */
-  border-bottom: 1px solid rgba(255,255,255,0.03); /* Subtle bottom border */
-  box-shadow: 0 0 8px var(--accent-glow2); /* Soft shadow glow */
+  background: var(--glass); /* Glass effect */
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 8px var(--accent-glow2);
 }
-
-/* Brand link styling */
 .brand-link {
-  color: var(--brand-color); /* Brand color */
-  font-weight: 700; /* Bold */
-  font-size: 1.4rem; /* Slightly larger font */
-  text-decoration: none; /* Remove underline */
-  text-shadow: 0 0 8px var(--brand-color); /* Glow effect */
-  transition: all 0.3s ease; /* Smooth hover transition */
+  color: var(--brand-color);
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-decoration: none;
+  text-shadow: 0 0 8px var(--brand-color);
+  transition: all 0.3s ease, transform 0.3s ease;
 }
 .brand-link:hover {
-  text-shadow: 0 0 16px var(--brand-color), 0 0 12px var(--accent-secondary); /* Stronger hover glow */
+  text-shadow: 0 0 16px var(--brand-color), 0 0 12px var(--accent-secondary);
+  transform: scale(1.05);
 }
-
-/* Container for search and nav links */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 24px; /* Space between search and nav */
-  margin-left: auto; /* Push to right */
+  gap: 24px;
+  margin-left: auto;
 }
-
-/* Nav links styling */
 .nav {
   display: flex;
-  gap: 32px; /* Spacing between nav items */
+  gap: 32px;
   font-size: 1rem;
   font-weight: 500;
 }
 .nav a {
-  color: var(--muted); /* Muted color for non-hover state */
-  text-decoration: none; /* Remove underline */
+  color: var(--muted);
+  text-decoration: none;
   transition: all 0.3s ease;
 }
 .nav a:hover {
-  color: var(--accent-secondary); /* Highlight on hover */
-  text-shadow: 0 0 6px var(--accent-secondary); /* Glow on hover */
+  color: var(--accent-secondary);
+  text-shadow: 0 0 6px var(--accent-secondary);
+  transform: scale(1.05);
 }
 
-/* Search input styling */
+/* =======================
+   Search
+   ======================= */
 .search input {
-  padding: 8px; /* Internal spacing */
-  border-radius: 8px; /* Rounded corners */
-  border: 1px solid rgba(255,255,255,0.03); /* Light border */
-  background: transparent; /* Transparent for glass effect */
-  color: inherit; /* Same color as body text */
-  box-shadow: 0 0 4px var(--accent-glow2); /* Soft neon shadow */
-  transition: all 0.3s ease; /* Smooth focus transition */
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  background: transparent;
+  color: inherit;
+  box-shadow: 0 0 4px var(--accent-glow2);
+  transition: all 0.3s ease;
 }
 .search input:focus {
-  outline: none; /* Remove default focus outline */
-  border-color: var(--accent-secondary); /* Highlight border */
-  box-shadow: 0 0 12px var(--accent-secondary); /* Glow on focus */
+  outline: none;
+  border-color: var(--accent-secondary);
+  box-shadow: 0 0 12px var(--accent-secondary);
 }
 
 /* =======================
-   Centered Content
-   ======================= */
-.center { 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  padding: 40px; 
-}
-
-/* =======================
-   Product Grid
+   Product Grid / Card
    ======================= */
 .grid {
-  display: grid; /* Use CSS grid */
-  grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); /* Responsive columns */
-  gap: 24px; /* Space between grid items */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
   margin-top: 16px;
 }
-
-/* =======================
-   Card Styles
-   ======================= */
 .card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); /* Slight gradient */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
   padding: 12px;
   border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(2,6,23,0.6), 0 0 8px var(--accent-glow); /* Card depth + glow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover smooth animation */
-  position: relative; /* For absolute elements inside */
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6), 0 0 8px var(--accent-glow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 360px; /* Uniform height */
+  min-height: 360px;
 }
 .card:hover {
-  transform: translateY(-4px); /* Lift effect */
-  box-shadow: 0 8px 20px rgba(2,6,23,0.8), 0 0 14px var(--accent-glow), 0 0 12px var(--accent-glow2); /* Stronger glow on hover */
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.8), 0 0 14px var(--accent-glow), 0 0 12px var(--accent-glow2);
 }
 .card img {
-  width: 100%; /* Full card width */
-  height: 160px; /* Fixed height */
-  object-fit: cover; /* Maintain aspect ratio */
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
   border-radius: 8px;
-  flex-shrink: 0; /* Prevent shrinking */
 }
-
-/* Card body styling */
 .card-body {
   padding: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1; /* Fill remaining space */
 }
-
-/* Product name inside card */
 .card-body h3 {
-  color: var(--product-name-color); /* Product name color */
-  text-shadow: 0 0 3px var(--product-name-color), 0 0 5px rgba(255,205,77,0.1); /* Subtle glow */
+  color: var(--product-name-color);
+  text-shadow: 0 0 3px var(--product-name-color), 0 0 5px rgba(255, 205, 77, 0.1);
   margin: 4px 0;
   font-size: 1.1rem;
   line-height: 1.2rem;
-  overflow: hidden; /* Truncate overflow */
-  text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Truncate long product names */
   white-space: nowrap;
 }
-
-/* Price styling */
 .price {
   color: var(--accent-price);
   font-weight: 700;
-  text-shadow: 0 0 6px var(--accent-price); /* Neon-like effect */
+  text-shadow: 0 0 6px var(--accent-price);
   margin: 4px 0;
 }
-
-/* Add to Cart button */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto; /* Push actions to bottom */
+}
 .actions button {
   background: var(--accent-primary);
   border: none;
@@ -193,23 +192,18 @@ body {
   border-radius: 8px;
   color: white;
   cursor: pointer;
-  box-shadow: 0 0 6px var(--accent-primary); /* Glow effect */
-  transition: all 0.3s ease; /* Smooth hover */
+  box-shadow: 0 0 6px var(--accent-primary);
+  transition: all 0.3s ease;
 }
 .actions button:hover {
-  transform: scale(1.05); /* Slight enlarge */
-  box-shadow: 0 0 12px var(--accent-primary), 0 0 6px var(--accent-secondary); /* Enhanced glow */
+  transform: scale(1.05);
+  box-shadow: 0 0 12px var(--accent-primary), 0 0 6px var(--accent-secondary);
 }
-
-/* Details button (bottom-right) */
 .detail-link {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
   background: var(--details-color);
   color: #000;
-  padding: 6px 10px;
-  border-radius: 6px;
+  padding: 8px 10px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   box-shadow: 0 0 6px var(--details-color);
@@ -221,54 +215,248 @@ body {
 }
 
 /* =======================
-   404 Error Page
+   Products Heading
    ======================= */
-.error-page {
-  display: flex;
-  flex-direction: column; /* Stack vertically */
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 80px); /* Full viewport minus header/footer */
-  text-align: center;
-  padding: 20px;
-  color: var(--accent-error); /* Error red accent */
-}
-.error-page h1 {
-  font-size: 6rem; /* Large 404 number */
-  margin: 0;
-  text-shadow: 0 0 16px var(--accent-error), 0 0 24px var(--accent-glow2); /* Neon glow effect */
-}
-.error-page h2 {
-  font-size: 2rem;
-  margin: 8px 0 16px 0;
-  color: #fff;
-  text-shadow: 0 0 8px var(--accent-error);
-}
-.error-page p {
-  font-size: 1.1rem;
-  margin-bottom: 24px;
-  color: var(--muted);
-}
-.error-page .btn-primary {
-  background: var(--accent-primary);
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-weight: 600;
-  color: #fff;
-  text-decoration: none;
-  box-shadow: 0 0 10px var(--accent-primary);
+.products-header h2 {
+  color: var(--products-heading-color);
+  text-shadow: 0 0 8px var(--products-heading-color), 0 0 14px rgba(0, 240, 255, 0.2);
   transition: all 0.3s ease;
 }
-.error-page .btn-primary:hover {
+.products-header h2:hover {
+  transform: scale(1.03);
+}
+
+/* =======================
+   Product Details
+   ======================= */
+.detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Image + Info */
+  gap: 20px;
+  align-items: flex-start;
+}
+.detail img {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+.detail-info h2 {
+  margin: 0 0 8px 0;
+}
+.detail-info .price {
+  font-size: 1.2rem;
+}
+
+/* =======================
+   Cart / Checkout Layout
+   ======================= */
+.cart-page, .checkout-page {
+  display: flex;
+  gap: 20px;
+}
+.cart-list, .checkout-list {
+  flex: 2; /* Main content */
+}
+.cart-summary, .checkout-summary {
+  flex: 1; /* Sidebar summary */
+  background: var(--sidebar-bg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--accent-glow2);
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: var(--glass);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+.cart-item:hover {
+  box-shadow: 0 0 10px var(--accent-glow2);
+}
+.cart-item img {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.controls {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.controls button {
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.controls button:hover {
+  color: white;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 8px var(--accent-primary);
+}
+
+/* =======================
+   Empty State (Cart & Checkout)
+   ======================= */
+.centered-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  text-align: center;
+  gap: 16px;
+  color: var(--accent-primary);
+  text-shadow: 0 0 8px var(--accent-glow2);
+  animation: fadeIn 0.8s ease-in-out;
+}
+.centered-empty h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+.centered-empty p {
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+/* =======================
+   Checkout Form
+   ======================= */
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px; /* Form + Summary sidebar */
+  gap: 20px;
+}
+.checkout-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+.checkout-form input,
+.checkout-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--card);
+  color: white;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+}
+.checkout-form input:focus,
+.checkout-form textarea:focus {
+  border-color: var(--accent-secondary);
+  box-shadow: 0 0 8px var(--accent-secondary);
+  outline: none;
+}
+.btn-primary {
+  display: inline-block;
+  background: var(--accent-primary);
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 12px var(--accent-primary);
+}
+
+/* =======================
+   Footer
+   ======================= */
+.footer {
+  padding: 16px;
+  text-align: center;
+  color: var(--muted);
+  margin-top: 24px;
+  position: relative;
+}
+.footer p {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* =======================
+   404 Page (Glow Effect)
+   ======================= */
+.error-page, .empty-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 80px);
+  text-align: center;
+  padding: 20px;
+  color: var(--accent-error);
+  animation: fadeIn 1s ease-in-out;
+}
+.error-page h1, .empty-404 h1 {
+  font-size: 6rem;
+  margin: 0;
+  animation: glow 1.5s infinite alternate; /* Glow animation for error numbers */
+}
+.error-page p, .empty-404 p {
+  font-size: 1.2rem;
+  margin-top: 12px;
+  color: var(--muted);
+}
+.error-page a, .empty-404 a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 16px;
+  background: var(--accent-primary);
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.error-page a:hover, .empty-404 a:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 16px var(--accent-primary), 0 0 8px var(--accent-glow);
+  box-shadow: 0 0 12px var(--accent-primary);
+}
+
+/* =======================
+   Animations
+   ======================= */
+@keyframes glow {
+  0% { text-shadow: 0 0 6px var(--accent-error); }
+  100% { text-shadow: 0 0 20px var(--accent-error); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* =======================
    Media Queries
    ======================= */
-@media(max-width:760px) {
-  .detail { grid-template-columns: 1fr; gap: 12px; } /* Stack detail page */
-  .checkout-grid { grid-template-columns: 1fr; } /* Stack checkout */
-  .grid { grid-template-columns: 1fr; } /* Stack products grid */
+@media (max-width: 760px) {
+  .detail {
+    grid-template-columns: 1fr; /* Stack product details */
+    gap: 12px;
+  }
+  .checkout-grid {
+    grid-template-columns: 1fr; /* Stack form and summary */
+  }
+  .grid {
+    grid-template-columns: 1fr; /* Single-column product grid */
+  }
 }

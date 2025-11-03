@@ -20,12 +20,16 @@ export default function Cart() {
     0
   );
 
-  // If cart is empty, show a message with a link to shopping page
+  // If cart is empty, show a themed message with a glowing button
   if (!items.length) {
     return (
-      <div className="center">
-        <h3>Your cart is empty</h3>
-        <Link to="/">Go shopping</Link>
+      <div className="centered-empty">
+        {/* Heading for empty cart */}
+        <h2>Your cart is empty</h2>
+        {/* Additional info */}
+        <p>Looks like you haven’t added anything yet!</p>
+        {/* Button to navigate back to products */}
+        <Link to="/" className="btn-primary">Go Shopping</Link>
       </div>
     );
   }
@@ -33,7 +37,9 @@ export default function Cart() {
   // If cart has items, render cart list and summary
   return (
     <div className="cart-page">
-      {/* Cart items list */}
+      {/* ===============================
+           Cart Items Section
+           =============================== */}
       <div className="cart-list-wrapper" style={{ flex: 2 }}>
         <h2>Your Cart</h2>
         <div className="cart-list">
@@ -44,12 +50,14 @@ export default function Cart() {
         </div>
       </div>
 
-      {/* Cart summary / order summary */}
+      {/* ===============================
+           Cart Summary / Order Summary
+           =============================== */}
       <aside className="cart-summary">
         <h3>Order Summary</h3>
         {/* Display total formatted as currency */}
         <p>Total: <strong>{formatCurrency(totalAmount)}</strong></p>
-        {/* Link to checkout page */}
+        {/* Button to navigate to checkout page */}
         <Link to="/checkout" className="btn-primary">Proceed to Checkout</Link>
       </aside>
     </div>
