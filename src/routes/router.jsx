@@ -3,12 +3,11 @@ import { createBrowserRouter } from "react-router-dom"; // For client-side routi
 import App from "../App"; // Main layout component
 import NotFound from "../components/NotFound"; // 404 page component
 
-// Lazy load components to improve initial load performance
-// This ensures the main bundle is smaller and components are loaded only when needed
-const ProductList = lazy(() => import("../components/ProductList")); // Home / product listing
-const ProductDetail = lazy(() => import("../components/ProductDetail")); // Single product details
-const Cart = lazy(() => import("../components/Cart")); // Shopping cart page
-const Checkout = lazy(() => import("../components/Checkout")); // Checkout page
+// Lazy-loaded components for performance optimization
+const ProductList = lazy(() => import("../components/ProductList"));
+const ProductDetail = lazy(() => import("../components/ProductDetail"));
+const Cart = lazy(() => import("../components/Cart"));
+const Checkout = lazy(() => import("../components/Checkout"));
 
 /**
  * Router configuration using createBrowserRouter
@@ -20,20 +19,18 @@ const router = createBrowserRouter(
   [
     {
       path: "/", // Root path
-      element: <App />, // Main layout wrapper for all child routes
-      errorElement: <NotFound />, // Display professional 404 page with neon styling
+      element: <App />, // Main layout wrapper
+      errorElement: <NotFound />, // Display 404 page for unmatched routes
       children: [
-        { index: true, element: <ProductList /> }, // Default home route showing product list
-        { path: "product/:id", element: <ProductDetail /> }, // Product details page for selected product
+        { index: true, element: <ProductList /> }, // Home / product listing
+        { path: "product/:id", element: <ProductDetail /> }, // Product details page
         { path: "cart", element: <Cart /> }, // Shopping cart page
         { path: "checkout", element: <Checkout /> }, // Checkout page
       ],
     },
   ],
   {
-    // Base URL for deployment on GitHub Pages
-    // Example: if repository is Pandit17/Shoppy_Globe, basename should be "/Shoppy_Globe"
-    basename: "/Shoppy_Globe",
+    basename: "/Shoppy_Globe", // Required for GitHub Pages routing
   }
 );
 

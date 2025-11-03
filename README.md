@@ -1,6 +1,8 @@
 # Shoppy_Globe – React E-Commerce Demo
 
-A demo e-commerce application built with **React**, **Redux Toolkit**, **React Router v6**, and **Vite** using **plain CSS**. Includes lazy-loading support with `LoadingFallback.jsx` and is deploy-ready for GitHub Pages.
+A React + Redux Toolkit e-commerce demo built with Vite and plain CSS.  
+➤ Lazy-loaded components with fallback UI (`LoadingFallback.jsx`)  
+➤ GitHub Pages-ready using HashRouter  
 
 ---
 
@@ -31,12 +33,12 @@ A demo e-commerce application built with **React**, **Redux Toolkit**, **React R
 ```bash
 git clone https://github.com/Pandit17/Shoppy_Globe.git
 cd Shoppy_Globe
-```
+````
 
 ### 2. Install dependencies
 
 ```bash
-npm install @reduxjs/toolkit react-redux react-router-dom@6 prop-types
+npm install
 ```
 
 ### 3. Run the development server
@@ -55,6 +57,14 @@ npm run build
 ```
 
 > The production build will be generated in the `dist/` folder.
+
+### 5. Deploy to GitHub Pages
+
+```bash
+npm run deploy
+```
+
+> Make sure `vite.config.js` has `base: '/Shoppy_Globe/'` and `main.jsx` wraps `RouterProvider` with `HashRouter` for GitHub Pages routing.
 
 ---
 
@@ -103,5 +113,27 @@ Shoppy_Globe/
 > Root-level files like `index.html`, `eslint.config.js`, `package.json`, and `vite.config.js` are necessary for development, linting, and deployment.
 
 ---
+
+## Notes for GitHub Pages
+
+* Ensure `main.jsx` wraps `<RouterProvider router={router} />` inside `<HashRouter>` to enable proper routing on GitHub Pages.
+* `vite.config.js` must have `base: '/Shoppy_Globe/'`.
+* 404 page (`NotFound.jsx`) works correctly for client-side routing now.
+* All lazy-loaded components have fallback UI via `LoadingFallback.jsx`.
+
+---
+
+## Dependencies
+
+* React 18+
+* Redux Toolkit
+* React Redux
+* React Router DOM v6
+* Prop-Types
+* Vite
+* gh-pages (for deployment)
+
+
+```
 
 
