@@ -5,6 +5,7 @@ import { RouterProvider } from "react-router-dom"; // Handles routing based on r
 import router from "./routes/router"; // App routes configured with createHashRouter
 import store from "./store/store"; // Redux store
 import "./styles/global.css"; // Global CSS
+import "react-toastify/dist/ReactToastify.css"; // Toast notifications CSS
 import LoadingFallback from "./components/LoadingFallback"; // Fallback UI for lazy-loaded components
 
 /**

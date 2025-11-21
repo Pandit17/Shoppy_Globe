@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"; // Hook to dispatch Redux actions
 import { addToCart } from "../store/cartSlice"; // Redux action to add product to cart
 import { fetchProductById } from "../api/productsApi"; // API call to fetch a single product
 import formatCurrency from "../utils/formatCurrency"; // Utility to format price as currency
+import { toast } from "react-toastify"; // Toast notifications
 
 /**
  * ProductDetail component: displays detailed information for a single product
@@ -44,6 +45,7 @@ export default function ProductDetail() {
 
   /**
    * Handle adding product to cart
+   * Dispatches Redux action and shows toast notification
    */
   const handleAdd = () => {
     if (!product) return;
@@ -57,6 +59,7 @@ export default function ProductDetail() {
     };
 
     dispatch(addToCart(payload)); // Dispatch addToCart action
+    toast.success(`${product.title} added to cart!`); // Show notification
   };
 
   // Render loading, error, or fallback UI
@@ -77,8 +80,8 @@ export default function ProductDetail() {
       {/* Product information */}
       <div className="detail-info">
         <h2>{product.title}</h2>
-        <p className="price">{formatCurrency(product.price)}</p> {/* Display formatted price */}
-        <p>{product.description}</p> {/* Product description */}
+        <p className="price">{formatCurrency(product.price)}</p>
+        <p>{product.description}</p>
         <p>
           <strong>Brand:</strong> {product.brand} • <strong>Stock:</strong> {product.stock}
         </p>

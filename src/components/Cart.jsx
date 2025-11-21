@@ -1,65 +1,63 @@
 import React from "react";
-import { useSelector } from "react-redux"; // To access Redux store state
-import CartItem from "./CartItem"; // Component to render individual cart items
-import { Link } from "react-router-dom"; // For client-side navigation
-import formatCurrency from "../utils/formatCurrency"; // Utility to format prices
+import { useSelector } from "react-redux"; // Access Redux store
+import CartItem from "./CartItem"; // Individual cart item component
+import { Link } from "react-router-dom"; // For Go Shopping and Proceed to Checkout navigation
+import formatCurrency from "../utils/formatCurrency"; // Utility to format price
 
 /**
- * Cart component: displays all items in the user's cart and a summary
+ * Cart component: displays all items in the cart
+ * - Shows empty state if cart is empty with Go Shopping button
+ * - Includes Proceed to Checkout button if cart has items
  */
 export default function Cart() {
-  // Get the cart items from Redux store; default to empty object
-  const itemsMap = useSelector((s) => s.cart.items || {});
+  const items = useSelector((state) => state.cart.items); // Get all cart items
+  const cartArray = Object.values(items); // Convert object to array
 
-  // Convert items object into an array for easier mapping
-  const items = Object.values(itemsMap);
-
-  // Calculate total amount of cart by multiplying price with quantity for each item
-  const totalAmount = items.reduce(
-    (sum, it) => sum + (it.product.price || 0) * it.quantity,
-    0
-  );
-
-  // If cart is empty, show a themed message with a glowing button
-  if (!items.length) {
+  // ================================
+  // Empty cart state
+  // ================================
+  if (!cartArray.length)
     return (
       <div className="centered-empty">
-        {/* Heading for empty cart */}
         <h2>Your cart is empty</h2>
-        {/* Additional info */}
-        <p>Looks like you haven’t added anything yet!</p>
-        {/* Button to navigate back to products */}
-        <Link to="/" className="btn-primary">Go Shopping</Link>
+        <p>Add some products to see them here.</p>
+
+        {/* Button to navigate back to shopping */}
+        <Link to="/" className="btn-primary">
+          Go Shopping
+        </Link>
       </div>
     );
-  }
 
-  // If cart has items, render cart list and summary
+  // ================================
+  // Cart page with items
+  // ================================
   return (
     <div className="cart-page">
-      {/* ===============================
-           Cart Items Section
-           =============================== */}
-      <div className="cart-list-wrapper" style={{ flex: 2 }}>
-        <h2>Your Cart</h2>
-        <div className="cart-list">
-          {items.map((it) => (
-            // Render each cart item using CartItem component
-            <CartItem key={it.product.id} item={it} />
-          ))}
-        </div>
+      <div className="cart-list">
+        {cartArray.map((item) => (
+          <CartItem key={item.product.id} item={item} />
+        ))}
       </div>
 
-      {/* ===============================
-           Cart Summary / Order Summary
-           =============================== */}
-      <aside className="cart-summary">
-        <h3>Order Summary</h3>
-        {/* Display total formatted as currency */}
-        <p>Total: <strong>{formatCurrency(totalAmount)}</strong></p>
-        {/* Button to navigate to checkout page */}
-        <Link to="/checkout" className="btn-primary">Proceed to Checkout</Link>
-      </aside>
+      {/* Cart summary sidebar */}
+      <div className="cart-summary">
+        <h3>Summary</h3>
+        <p>
+          Total:{" "}
+          {formatCurrency(
+            cartArray.reduce(
+              (acc, item) => acc + item.product.price * item.quantity,
+              0
+            )
+          )}
+        </p>
+
+        {/* Proceed to Checkout button */}
+        <Link to="/checkout" className="btn-primary">
+          Proceed to Checkout
+        </Link>
+      </div>
     </div>
   );
 }

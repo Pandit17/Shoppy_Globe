@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom"; // Renders child route components inside parent route
 import Header from "./components/Header"; // Header component displayed on all pages
+import { ToastContainer } from "react-toastify"; // Toast notifications
 
 /**
  * App component: Main layout of the application
@@ -20,9 +21,22 @@ export default function App() {
 
       {/* Footer displayed on all pages */}
       <footer className="footer">
-        {/* Application name and short description */}
         <p>ShoppyGlobe • Demo E-commerce</p>
       </footer>
+
+      {/* Toast notifications container */}
+      <ToastContainer
+        position="top-right" // Top-right notifications
+        autoClose={2000} // Auto close in 2 seconds
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="dark" 
+      />
     </div>
   );
 }

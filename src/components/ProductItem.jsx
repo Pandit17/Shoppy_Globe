@@ -1,65 +1,61 @@
 import React from "react";
-import PropTypes from "prop-types"; // For validating prop types
-import { Link } from "react-router-dom"; // For navigation to product detail page
-import { useDispatch } from "react-redux"; // To dispatch Redux actions
-import { addToCart } from "../store/cartSlice"; // Redux action to add item to cart
-import formatCurrency from "../utils/formatCurrency"; // Utility to format price numbers
+import { useDispatch } from "react-redux"; // Hook to dispatch Redux actions
+import { addToCart } from "../store/cartSlice"; // Redux action to add product to cart
+import { Link } from "react-router-dom"; // Navigate to product details page
+import formatCurrency from "../utils/formatCurrency"; // Utility to format price
+import { toast } from "react-toastify"; // Toast notifications
 
 /**
- * ProductItem component: displays a single product card
+ * ProductItem component: displays a single product in the product grid
  * - Shows product image, title, and price
- * - Allows adding product to cart
- * - Provides link to product details page
- *
- * @param {Object} props
- * @param {Object} props.product - Product object containing id, title, price, thumbnail, images
+ * - Provides Details link and Add to Cart button
+ * - Shows toast notification when added to cart
  */
 export default function ProductItem({ product }) {
-  const dispatch = useDispatch(); // Hook to dispatch Redux actions
+  const dispatch = useDispatch(); // Redux dispatch function
 
   /**
-   * Handles adding product to cart
+   * Handle adding product to cart
+   * Dispatches Redux action and shows toast
    */
-  const handleAdd = () => {
+  const handleAddToCart = () => {
+    if (!product?.id) return; // Safety check
+
+    // Prepare payload for Redux
     const payload = {
       id: product.id,
       title: product.title,
       price: product.price,
-      thumbnail: product.thumbnail || (product.images && product.images[0]) || "", // Fallback image
+      thumbnail: product.thumbnail || (product.images && product.images[0]) || "",
     };
 
-    dispatch(addToCart(payload)); // Dispatch Redux action to add product to cart
+    dispatch(addToCart(payload)); // Add to cart
+    toast.success(`${product.title} added to cart!`); // Show success notification
   };
 
   return (
-    <article className="card">
-      {/* Clicking the image navigates to product detail page */}
-      <Link to={`/product/${product.id}`}>
-        <img
-          src={product.thumbnail || (product.images && product.images[0])} // Use first image as fallback
-          alt={product.title}
-          loading="lazy" // Lazy-load image for performance
-        />
-      </Link>
+    <div className="card">
+      {/* Product image */}
+      <img
+        src={product.thumbnail || (product.images && product.images[0])}
+        alt={product.title}
+      />
 
-      {/* Product info section */}
+      {/* Card body: title, price, actions */}
       <div className="card-body">
         <h3>{product.title}</h3>
-        <p className="price">{formatCurrency(product.price)}</p> {/* Display formatted price */}
+        <p className="price">{formatCurrency(product.price)}</p>
 
-        {/* Action buttons: add to cart and view details */}
+        {/* Action buttons: Details link and Add to Cart */}
         <div className="actions">
-          <button onClick={handleAdd}>Add to cart</button>
           <Link to={`/product/${product.id}`} className="detail-link">
             Details
           </Link>
+          <button onClick={handleAddToCart} className="add-cart-btn">
+            Add to Cart
+          </button>
         </div>
       </div>
-    </article>
+    </div>
   );
 }
-
-// PropTypes validation to ensure correct prop shape
-ProductItem.propTypes = {
-  product: PropTypes.object.isRequired,
-};

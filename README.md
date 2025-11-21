@@ -1,8 +1,13 @@
+Here’s your updated README with the Toastify and CSS updates integrated, keeping the original flow and structure intact. I only added relevant details where they fit naturally:
+
+````markdown
 # Shoppy_Globe – React E-Commerce Demo
 
 A React + Redux Toolkit e-commerce demo built with Vite and plain CSS.  
 ➤ Lazy-loaded components with fallback UI (`LoadingFallback.jsx`)  
 ➤ GitHub Pages-ready using HashRouter  
+➤ Styled with global CSS including custom scrollbar, header, product cards, and toast notifications  
+➤ Toast notifications powered by [React Toastify](https://fkhadra.github.io/react-toastify/) with custom theme
 
 ---
 
@@ -21,6 +26,8 @@ A React + Redux Toolkit e-commerce demo built with Vite and plain CSS.
 * Search functionality integrated with Redux
 * Lazy loading of components with fallback UI (`LoadingFallback.jsx`)
 * Responsive plain CSS styling
+* Custom scrollbar, header, card, and toast styles via `global.css`
+* Toast notifications for success, error, info, and warning messages
 * 404 Not Found page for invalid routes
 * Ready for GitHub Pages deployment (`/Shoppy_Globe` basename)
 
@@ -40,6 +47,9 @@ cd Shoppy_Globe
 ```bash
 npm install
 ```
+
+> Ensure the following packages are installed:
+> `react`, `react-dom`, `react-router-dom`, `redux`, `react-redux`, `@reduxjs/toolkit`, `react-toastify`, `vite`
 
 ### 3. Run the development server
 
@@ -111,6 +121,7 @@ Shoppy_Globe/
 
 > `LoadingFallback.jsx` is placed in `src/components` for lazy-loaded routes.
 > Root-level files like `index.html`, `eslint.config.js`, `package.json`, and `vite.config.js` are necessary for development, linting, and deployment.
+> `global.css` contains styles for header, product cards, scrollbar, and toast notifications.
 
 ---
 
@@ -118,8 +129,9 @@ Shoppy_Globe/
 
 * Ensure `main.jsx` wraps `<RouterProvider router={router} />` inside `<HashRouter>` to enable proper routing on GitHub Pages.
 * `vite.config.js` must have `base: '/Shoppy_Globe/'`.
-* 404 page (`NotFound.jsx`) works correctly for client-side routing now.
+* 404 page (`NotFound.jsx`) works correctly for client-side routing.
 * All lazy-loaded components have fallback UI via `LoadingFallback.jsx`.
+* Toast notifications are fully styled and functional using `react-toastify` with custom dark theme and accent colors.
 
 ---
 
@@ -131,8 +143,8 @@ Shoppy_Globe/
 * React Router DOM v6
 * Prop-Types
 * Vite
+* React Toastify
 * gh-pages (for deployment)
-
 
 ```
 
