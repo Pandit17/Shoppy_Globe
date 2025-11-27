@@ -1,6 +1,3 @@
-Here’s your updated README with the Toastify and CSS updates integrated, keeping the original flow and structure intact. I only added relevant details where they fit naturally:
-
-````markdown
 # Shoppy_Globe – React E-Commerce Demo
 
 A React + Redux Toolkit e-commerce demo built with Vite and plain CSS.  
